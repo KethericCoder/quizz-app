@@ -31,11 +31,8 @@
   display: none;
 }
 
-
-/*additional css ends*/
-
 body {
-  background-color: black;
+  background-color:#efe2ba;
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -52,8 +49,11 @@ h1 {
   margin-right: 60px;
   margin: 10px;
   margin-bottom: 10px;
-  background-color: blue;
+  pad
+  background-color: #f13c20;
   font-size: 40px;
+  border: 34px dashed #f13c20 ;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 header img {
@@ -224,3 +224,6 @@ h2 {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+/*additional css ends*/
+
