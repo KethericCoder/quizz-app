@@ -39,16 +39,16 @@
         questionChoice: ['A half boiled egg', 'A pan fried egg cooked halfway done', 'A pan fired egg with broken yolk', 'A grilled egg'],
         questionAnswer: 1,
     },
-  ],
-  quizStarted: false,
-  questionNumber: 0,
-  score: 0
-};
+  ];
+  let quizStarted: false,
+  let questionNumber: 0,
+  let score: 0
+  let totalQuestion: questionsArray.length; 
 
 
-/*function generateItemElement(item) {
+function generateItemElement(item) {
   return `
-    <li data-item-id="${item.id}">
+    
       <span class="shopping-item js-shopping-item ${item.checked ? "shopping-item__checked" : ''}">${item.name}</span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
@@ -57,9 +57,8 @@
         <button class="shopping-item-delete js-item-delete">
             <span class="button-label">delete</span>
         </button>
-      </div>
-    </li>`;
-}*/
+      </div>`;
+}
 
 function renderShoppingList() {
   // render the shopping list in the DOM
