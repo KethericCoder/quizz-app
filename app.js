@@ -4,40 +4,41 @@
   // 5 or more questions are required
   const questionsArray = [
     //question 0
+    // Answers are indexed starting from 0
     {
-        questionText: 'The best tool to peel a ginger is...',
-        questionChoice: ['Vegetalble peeler', 'Cheese grater', 'Paring Knife', 'Spoon'],
-        questionAnswer: 3,
+        questionText: 'What is the technical name for the '#' symbol ?',
+        questionChoice: ['Hashtag', 'Pound', 'Octothorpe', 'Number Sign'],
+        questionAnswer: 2,
     },
     //question 1
     {
-        questionText: 'The ingredient that enhances the level of spiciness of a dish is…',
-        questionChoice: ['Salt', 'Garlic', 'Paprika', 'Fat'],
-        questionAnswer: 1
+        questionText: 'IBM created one of the earliest computer programming languages in what year?',
+        questionChoice: ['1991', '1974', '1980', '1957'],
+        questionAnswer: 3
     },
     //question 2
     {
-        questionText: 'To sear a protein, usually it\'s best to…',
-        questionChoice: ['Let the protein sits in the pan for one side as long as possible', 'Flip the protein in the pan as many times as possible', 'Cook the protein with the thinnest pan', 'Start the cooking process from an oven'],
+        questionText: 'Whom do many historians consider the first programmer?',
+        questionChoice: ['Ada Lovelace', 'Charles Babbage', 'Bill Gates', 'Lord Byron'],
         questionAnswer: 0,
     },
     //question 3
     {
-        questionText: 'The ingredient that can contribute the taste of sweet in a dish is…',
-        questionChoice: ['Paprika', 'Onion', 'Garlic', 'Fish Sauce'],
-        questionAnswer: 1,
+        questionText: 'Which of the following operators has the highest precedence?',
+        questionChoice: ['*', '&&', '!=', '!'],
+        questionAnswer: 3,
     },
     //question 4
     {
-        questionText: 'Poaching is...',
-        questionChoice: ['Cooking in loew heat', 'Cooking by simmering in liquid', 'Cooking something halfway done', 'Cooking something under 30 seconds'],
+        questionText: 'Who wrote the classic manual, "The C Programming Language"?',
+        questionChoice: ['Hall and Oats', 'Kernighan and Ritchie', 'Steve Jobs', 'Corky Romano'],
         questionAnswer: 1,
     },
     //question 5
     {
-        questionText: 'Sunny-side-up egg is...',
-        questionChoice: ['A half boiled egg', 'A pan fried egg cooked halfway done', 'A pan fired egg with broken yolk', 'A grilled egg'],
-        questionAnswer: 1,
+        questionText: 'Which SQL command would you use to retrieve a record from the database?',
+        questionChoice: ['SELECT', 'GET', 'RETREIVE', '#FIND'],
+        questionAnswer: 0,
     },
   ],
   quizStarted: false,
