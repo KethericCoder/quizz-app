@@ -46,6 +46,7 @@
   let score: 0
   let totalQuestion: questionsArray.length; 
 
+<<<<<<< HEAD
   function enterHere() {
     $('.start-button').click(function () {
         $('.start-section').hide();
@@ -171,6 +172,9 @@ function handleShoppingList() {
 
 // when the page loads, call `handleShoppingList`
 $(handleShoppingList);
+=======
+ 
+>>>>>>> 6ea8e54631f906dd24842a28068ee789c5236c11
 
 /**
  * 
