@@ -46,23 +46,49 @@
   let score: 0
   let totalQuestion: questionsArray.length; 
 
+  function enterHere() {
+    $('.start-button').click(function () {
+        $('.start-section').hide();
+        $('.question-section').show();
+        $('.final-section').hide();
+        console.log('1.startChoppin ran');
+        currentQuestionNumber = 0;
+        console.log('currentQuestionNumber');
+    })
+};
 
-function generateItemElement(item) {
+function generateQuestionPage() {
   return `
+<<<<<<< HEAD
     <li>
       <span class="shopping-item js-shopping-item ${item.checked ? "shopping-item__checked" : ''}">${item.name}</span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
             <span class="button-label">check</span>
+=======
+      <span class=".start-button"</span>
+      <div class="enter-here">
+        <button type='submit' class="next"> 
+            <span class="button-label">Answers</span>
         </button>
-        <button class="shopping-item-delete js-item-delete">
-            <span class="button-label">delete</span>
+        <button  type='submit' class="next">
+            <span class="button-label">Answer1</span>
+>>>>>>> 4dbb2f95e4ffef546831e7bb01b712d8c66c6ee2
+        </button>
+        <button  type='submit' class="next">
+            <span class="button-label">Answer1</span>
+        </button><button  type='submit' class="next">
+            <span class="button-label">Answer1</span>
         </button>
       </div>`
     </li>;
 }
 
+<<<<<<< HEAD
 function renderQuestions() {
+=======
+/*function renderShoppingList() {
+>>>>>>> 4dbb2f95e4ffef546831e7bb01b712d8c66c6ee2
   // render the shopping list in the DOM
   console.log('`renderQuestions` ran');
   const firstquestio = generateShoppingItemsString(STORE);
