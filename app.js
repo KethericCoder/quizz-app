@@ -49,7 +49,7 @@
 
 function generateItemElement(item) {
   return `
-    
+    <li>
       <span class="shopping-item js-shopping-item ${item.checked ? "shopping-item__checked" : ''}">${item.name}</span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
@@ -58,13 +58,14 @@ function generateItemElement(item) {
         <button class="shopping-item-delete js-item-delete">
             <span class="button-label">delete</span>
         </button>
-      </div>`;
+      </div>`
+    </li>;
 }
 
-function renderShoppingList() {
+function renderQuestions() {
   // render the shopping list in the DOM
-  console.log('`renderShoppingList` ran');
-  const shoppingListItemsString = generateShoppingItemsString(STORE);
+  console.log('`renderQuestions` ran');
+  const firstquestio = generateShoppingItemsString(STORE);
 
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
