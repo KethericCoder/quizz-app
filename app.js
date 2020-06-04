@@ -69,26 +69,14 @@ $(document).ready(function($){
       <h1>${store.questions[index].question}</hi>
       <form>
         <div class = "answers">
-          <div class = "answer01">
-            <button class="answer1">
-              <span class="answer1-label">${store.questions[index].answers[0]}</span><br>
-            </button>
-          </div>
-          <div class = "answer01">
-            <button class="answer1">
-              <span class="answer1-label">${store.questions[index].answers[1]}</span><br>
-            </button>
-          </div>
-          <div class = "answer01">
-            <button class="answer1">
-              <span class="answer1-label">${store.questions[index].answers[2]}</span><br>
-            </button>
-          </div>
-          <div class = "answer01">
-            <button class="answer1">
-              <span class="answer1-label">${store.questions[index].answers[3]}</span><br>
-            </button>
-          </div>
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.questions[index].answers[0]}</label><br>
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.questions[index].answers[1]}</label><br>
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.questions[index].answers[2]}</label><br>
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.questions[index].answers[3]}</label><br>
         </div>
         <div class='submit-button'>
         <button class="sub button">
