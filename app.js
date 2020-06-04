@@ -4,8 +4,8 @@
  */
   
 
-$(document).ready(function($){
-  let number = 0;
+//$(document).ready(function($){
+ let number = 0;
   
   const store = {
     // 5 or more questions are required
@@ -55,7 +55,7 @@ $(document).ready(function($){
     questionNumber: 0,
     score: 0
   };
-
+//todo: should be named generateQuizHomePage
   function quizHomePage() {
     return `
     <div class="startpage">
@@ -108,6 +108,7 @@ $(document).ready(function($){
    let message = '';
 
     if (store.score == 5) {
+      // todo: how to get message out to user?
       message = 'New High Score';
     } else if (store.score <= 3) {
       message = 'Better luck next time';
@@ -117,7 +118,7 @@ $(document).ready(function($){
 
   function generateQuizApp(store, index) {
     console.log("Generating questions and answers");
-  
+  // todo: should be generateQuestionPage
     const task = generateItemElement(store, index);
     return task
   }
@@ -131,7 +132,7 @@ $(document).ready(function($){
     const homepage = quizHomePage();
   // insert that HTML into the DOM
     
-  $('main').html(html)
+  $('main').html(homepage)
 
    
     
@@ -139,25 +140,27 @@ $(document).ready(function($){
 
   function renderQuestionPage() {
     const questionsString = generateQuestionPage(store);
-    $('main').html(html)
+    $('main').html(questionsString)
   }
   
-  
+  // todo: renderQuestionPage?
   function renderState() {
     $('main').on('click', '.start', () => {
-      renderQuestionsPage();
+      renderQuestionPage();
       state.quizStarted ='on';
     });
  
   }
-  
+  //todo: need to have an event handler for submit button
+  // submit button should check answer and determine correct answer, update score, i++ question #, then call render qus page
+  // should also determine if the quiz is over 
+  // need end page, reset button, reset button handler will start quiz over
   function handleQuiz() {
     renderHomePage();
-    renderQuestionsPage();
-    renderState();
-    renderQuizStarted();
-    handleCorrectAnswer();
-    QuizHomePage();
+    //renderQuestionPage();
+    //renderState();
+    //renderQuizStarted();
+    //handleCorrectAnswer();
     //handleItemCheckClicked();
     //handleDeleteItemClicked();
   
@@ -165,7 +168,7 @@ $(document).ready(function($){
 
   $(handleQuiz);
   //your code here
-});
+//});
 
 
 
