@@ -91,7 +91,9 @@ $(document).ready(function($){
           </div>
         </div>
         <div class='submit-button'>
-        
+        <button class="sub button">
+        <span class='submitbuttonlabel'>Submit</span>
+        </button>
         </div>
       </form>
 
