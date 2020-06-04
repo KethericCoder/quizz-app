@@ -3,8 +3,6 @@
  * Example store structure
  */
   
-
-$(document).ready(function($){
   let number = 0;
   
   const store = {
@@ -64,20 +62,19 @@ $(document).ready(function($){
   }
 
  
-  function generateItemElement(store, index) {
-    if(index >= 0) {
+  function generateQuizApp() {
       return `
-      <h1>${store.questions[index].question}</hi>
+      <h1>${store.questions[number].question}</hi>
       <form>
         <div class = "answers">
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[0]}</label><br>
+          <label for="ans">${store.questions[number].answers[0]}</label><br>
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[1]}</label><br>
+          <label for="ans">${store.questions[number].answers[1]}</label><br>
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[2]}</label><br>
+          <label for="ans">${store.questions[number].answers[2]}</label><br>
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[3]}</label><br>
+          <label for="ans">${store.questions[number].answers[3]}</label><br>
         </div>
         <div class='submit-button'>
           <button class="sub button">
@@ -88,16 +85,7 @@ $(document).ready(function($){
 
       <div class = "score"> score ${store.score}</div>
       <div class = "questionnum"> question Number   ${store.questionNumber}</div>
-    `;
-    }
-    
-  }
-
-  function generateQuizApp(store, index) {
-    console.log("Generating questions and answers");
-  
-    const task = generateItemElement(store, index);
-    return task
+      `;
   }
 
 
@@ -109,22 +97,21 @@ $(document).ready(function($){
     const homepage = quizHomePage();
   // insert that HTML into the DOM
     
-  $('main').html(quizHomePage)
-  number += 1
+  $('main').html(quizHomePage);
    
     
   }
 
   function renderQuestionsPage() {
-    const questionsString = generateQuizApp(store);
-    $('main').html(questionString)
+    const questionsString = generateQuizApp();
+    $('main').html(questionString);
   }
   
   
   function start() {
-    $(".start").click( event => {
-      event.preventDefault();
-      renderQuestionsPage(num);
+    $(".start").click(function (event) {
+      //event.preventDefault();
+      $(renderQuestionsPage);
     })
     
     
@@ -132,7 +119,8 @@ $(document).ready(function($){
   
   function handleQuiz() {
     renderHomePage();
-    renderQuestionsPage();
+    start();
+    //renderQuestionsPage();
     /*handleCorrectAnswer();
     /*QuizHomePage();
     /*handleItemCheckClicked();
@@ -142,7 +130,7 @@ $(document).ready(function($){
 
   $(handleQuiz);
   //your code here
-});
+
 
 
 
