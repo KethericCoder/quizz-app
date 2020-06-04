@@ -90,7 +90,9 @@ $(document).ready(function($){
             </button>
           </div>
         </div>
+        <div class='submit-button'>
         
+        </div>
       </form>
 
       <div class = "score"> score ${store.score}</div>
