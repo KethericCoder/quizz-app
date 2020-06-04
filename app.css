@@ -59,6 +59,7 @@ h1 {
 .answers {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   
 }
 
