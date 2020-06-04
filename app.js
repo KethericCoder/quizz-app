@@ -86,6 +86,9 @@ $(document).ready(function($){
         </div>
         
       </form>
+
+      <div class = "score"> score ${store.score}</div>
+      <div class = "questionnum"> question Number   ${store.questionNumber}</div>
     `;
   }
 
