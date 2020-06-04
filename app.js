@@ -54,7 +54,13 @@ $(document).ready(function($){
   };
 
   function QuizHomePage() {
-    
+    return `
+    <div class="startpage">
+    <h2> Start Quizz </h2>
+      <button class="start">
+        <span class="begin">Begin</span>
+        </button>
+    </div>`
   }
 
  
@@ -119,6 +125,7 @@ $(document).ready(function($){
   function handleQuiz() {
     renderQuizApp();
     handleCorrectAnswer();
+    QuizHomePage();
     /*handleItemCheckClicked();
     handleDeleteItemClicked();*/
   
