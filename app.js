@@ -5,7 +5,7 @@
   
 
 $(document).ready(function($){
-  let number = 1;
+  let number = 0;
   
   const store = {
     // 5 or more questions are required
@@ -100,29 +100,39 @@ $(document).ready(function($){
     return task
   }
 
-  function renderQuizApp(number) {
+
+
+  function renderHomePage() {
     // render the quiz app in the DOM
     console.log('`quiz app` ran');
-    const questionsString = generateQuizApp(store, number);
+
     const homepage = quizHomePage();
   // insert that HTML into the DOM
-    if(number < 0) {
-      $('main').html(quizHomePage)
-    }
-    else {
-      $('main').html(questionsString);
-    }
+    
+  $('main').html(quizHomePage)
+  number += 1
+   
+    
+  }
+
+  function renderQuestionsPage() {
+    const questionsString = generateQuizApp(store);
+    $('main').html(questionString)
   }
   
-  function handleCorrectAnswer() {
-    $(".submit-button").click(function() {
-      number += 1
+  
+  function start() {
+    $(".start").click( event => {
+      event.preventDefault();
+      renderQuestionsPage(num);
     })
+    
     
   }
   
   function handleQuiz() {
-    renderQuizApp(number);
+    renderHomePage();
+    renderQuestionsPage();
     /*handleCorrectAnswer();
     /*QuizHomePage();
     /*handleItemCheckClicked();
