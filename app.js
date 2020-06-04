@@ -48,7 +48,10 @@ $(document).ready(function($){
         correctAnswer: 'SELECT',
       }
     ],
-    quizStarted: false,
+  };
+
+   let state = {
+    quizStarted: 'off',
     questionNumber: 0,
     score: 0
   };
@@ -56,28 +59,36 @@ $(document).ready(function($){
   function quizHomePage() {
     return `
     <div class="startpage">
-      <h2> Start Quizz </h2>
+      <h2> Start Quiz </h2>
       <button class="start">
         <span class="begin">Begin</span>
       </button>
     </div>`
   }
 
+  function generateState() {
+    return `
+    <div class='state'>
+    <p>Question: ${store.index + 1} of 5</p>
+    <p>Current Score: ${store.score} of 5</p>
+    </div>`;
+  }
+
  
-  function generateItemElement(store, index) {
+  function generateQuestionPage(store, index) {
     if(index >= 0) {
       return `
-      <h1>${store.questions[index].question}</hi>
+      <h1>${store.question[index].question}</hi>
       <form>
         <div class = "answers">
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[0]}</label><br>
+          <label for="ans">${store.question[index].answer[0]}</label><br>
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[1]}</label><br>
+          <label for="ans">${store.question[index].answer[1]}</label><br>
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[2]}</label><br>
+          <label for="ans">${store.question[index].answer[2]}</label><br>
           <input type="radio"  name="ans" value="ans">
-          <label for="ans">${store.questions[index].answers[3]}</label><br>
+          <label for="ans">${store.question[index].answer[3]}</label><br>
         </div>
         <div class='submit-button'>
           <button class="sub button">
@@ -92,6 +103,17 @@ $(document).ready(function($){
     }
     
   }
+
+ function generateResult() {
+   let message = '';
+
+    if (store.score == 5) {
+      message = 'New High Score';
+    } else if (store.score <= 3) {
+      message = 'Better luck next time';
+    }
+    else message = 'Try Again';
+ };
 
   function generateQuizApp(store, index) {
     console.log("Generating questions and answers");
@@ -109,34 +131,35 @@ $(document).ready(function($){
     const homepage = quizHomePage();
   // insert that HTML into the DOM
     
-  $('main').html(quizHomePage)
-  number += 1
+  $('main').html(html)
+
    
     
   }
 
-  function renderQuestionsPage() {
-    const questionsString = generateQuizApp(store);
-    $('main').html(questionString)
+  function renderQuestionPage() {
+    const questionsString = generateQuestionPage(store);
+    $('main').html(html)
   }
   
   
-  function start() {
-    $(".start").click( event => {
-      event.preventDefault();
-      renderQuestionsPage(num);
-    })
-    
-    
+  function renderState() {
+    $('main').on('click', '.start', () => {
+      renderQuestionsPage();
+      state.quizStarted ='on';
+    });
+ 
   }
   
   function handleQuiz() {
     renderHomePage();
     renderQuestionsPage();
-    /*handleCorrectAnswer();
-    /*QuizHomePage();
-    /*handleItemCheckClicked();
-    handleDeleteItemClicked();*/
+    renderState();
+    renderQuizStarted();
+    handleCorrectAnswer();
+    QuizHomePage();
+    //handleItemCheckClicked();
+    //handleDeleteItemClicked();
   
   }
 
