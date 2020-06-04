@@ -5,7 +5,7 @@
   
 
 $(document).ready(function($){
-  let index = 0
+  let number = 1;
   
   const store = {
     // 5 or more questions are required
@@ -53,19 +53,20 @@ $(document).ready(function($){
     score: 0
   };
 
-  function QuizHomePage() {
+  function quizHomePage() {
     return `
     <div class="startpage">
-    <h2> Start Quizz </h2>
+      <h2> Start Quizz </h2>
       <button class="start">
         <span class="begin">Begin</span>
-        </button>
+      </button>
     </div>`
   }
 
  
-  function generateItemElement() {
-    return `
+  function generateItemElement(store, index) {
+    if(index >= 0) {
+      return `
       <h1>${store.questions[index].question}</hi>
       <form>
         <div class = "answers">
@@ -79,15 +80,17 @@ $(document).ready(function($){
           <label for="ans">${store.questions[index].answers[3]}</label><br>
         </div>
         <div class='submit-button'>
-        <button class="sub button">
-        <span class='submitbuttonlabel'>Submit</span>
-        </button>
+          <button class="sub button">
+          <span class='submitbuttonlabel'>Submit</span>
+          </button>
         </div>
       </form>
 
       <div class = "score"> score ${store.score}</div>
       <div class = "questionnum"> question Number   ${store.questionNumber}</div>
     `;
+    }
+    
   }
 
   function generateQuizApp(store, index) {
@@ -97,27 +100,31 @@ $(document).ready(function($){
     return task
   }
 
-  function renderQuizApp() {
+  function renderQuizApp(number) {
     // render the quiz app in the DOM
     console.log('`quiz app` ran');
-    const questionsString = generateQuizApp();
-  
-    // insert that HTML into the DOM
-    $('main').html(questionsString);
+    const questionsString = generateQuizApp(store, number);
+    const homepage = quizHomePage();
+  // insert that HTML into the DOM
+    if(number < 0) {
+      $('main').html(quizHomePage)
+    }
+    else {
+      $('main').html(questionsString);
+    }
   }
   
   function handleCorrectAnswer() {
-    $(".answers").on("click", ".answer01", event => {
-      event.preventDefault();
-      score.store += 1
-      index += 1
+    $(".submit-button").click(function() {
+      number += 1
     })
+    
   }
   
   function handleQuiz() {
-    renderQuizApp();
-    handleCorrectAnswer();
-    QuizHomePage();
+    renderQuizApp(number);
+    /*handleCorrectAnswer();
+    /*QuizHomePage();
     /*handleItemCheckClicked();
     handleDeleteItemClicked();*/
   
