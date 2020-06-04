@@ -3,30 +3,32 @@
  * Example store structure
  */
   
-let number = 0;
 
-const store = {
-  // 5 or more questions are required
-  questions: [
-    {
-      question: 'What is the technical name for the "#" symbol ?',
-      answers: [
-        'Hashtag', 'Pound', 'Octothorpe', 'Number Sign'
-      ],
-      correctAnswer: 'Pound'
-    },
-    {
-      question: 'IBM created one of the earliest computer programming languages in what year?',
-      answers: [
-        '1991', '1974', '1980', '1957'
-      ],
-      correctAnswer: '1980'
-    },
-    {
-      question: 'Whom do many historians consider the first programmer?',
-      answers: ['Ada Lovelace', 'Charles Babbage', 'Bill Gates', 'Lord Byron'],
-      correctAnswer: 'Ada Lovelace',
-    },
+//$(document).ready(function($){
+ let number = 0;
+  
+  const store = {
+    // 5 or more questions are required
+    questions: [
+      {
+        question: 'What is the technical name for the "#" symbol ?',
+        answers: [
+          'Hashtag', 'Pound', 'Octothorpe', 'Number Sign'
+        ],
+        correctAnswer: 'Pound'
+      },
+      {
+        question: 'IBM created one of the earliest computer programming languages in what year?',
+        answers: [
+          '1991', '1974', '1980', '1957'
+        ],
+        correctAnswer: '1980'
+      },
+      {
+        question: 'Whom do many historians consider the first programmer?',
+        answers: ['Ada Lovelace', 'Charles Babbage', 'Bill Gates', 'Lord Byron'],
+        correctAnswer: 'Ada Lovelace',
+      },
     //question 3
     {
       question: 'Which of the following operators has the highest precedence?',
@@ -40,75 +42,87 @@ const store = {
       correctAnswer: 'Kernighan and Ritchie',
     },
     //question 5
-    {
-      question: 'Which SQL command would you use to retrieve a record from the database?',
-      answer: ['SELECT', 'GET', 'RETREIVE', '#FIND'],
-      correctAnswer: 'SELECT',
-    }
-  ],
-};
+      {
+        question: 'Which SQL command would you use to retrieve a record from the database?',
+        answer: ['SELECT', 'GET', 'RETREIVE', '#FIND'],
+        correctAnswer: 'SELECT',
+      }
+    ],
+  };
 
-let state = {
-  quizStarted: 'off',
-  questionNumber: 0,
-  score: 0
-};
-
-function quizHomePage() {
-  return `
-  <div class="startpage">
-    <h2> Start Quiz </h2>
-    <button class="start">
-      <span class="begin">Begin</span>
-    </button>
-  </div>`;
-}
-
-function generateState() {
-  return `
-  <div class='state'>
-  <p>Question: ${store.index + 1} of 5</p>
-  <p>Current Score: ${store.score} of 5</p>
-  </div>`;
-}
-
-
-function generateQuestionPage(store, index) {
-  if(index >= 0) {
+   let state = {
+    quizStarted: 'off',
+    questionNumber: 0,
+    score: 0
+  };
+//todo: should be named generateQuizHomePage
+  function quizHomePage() {
     return `
-    <h1>${store.question[index].question}</hi>
-    <form>
-      <div class = "answers">
-        <input type="radio"  name="ans" value="ans">
-        <label for="ans">${store.question[index].answer[0]}</label><br>
-        <input type="radio"  name="ans" value="ans">
-        <label for="ans">${store.question[index].answer[1]}</label><br>
-        <input type="radio"  name="ans" value="ans">
-        <label for="ans">${store.question[index].answer[2]}</label><br>
-        <input type="radio"  name="ans" value="ans">
-        <label for="ans">${store.question[index].answer[3]}</label><br>
-      </div>
-      <div class='submit-button'>
-        <button class="sub button">
-        <span class='submitbuttonlabel'>Submit</span>
-        </button>
-      </div>
-    </form>
-
-    <div class = "score"> score ${store.score}</div>
-    <div class = "questionnum"> question Number   ${store.questionNumber}</div>
-  `;
+    <div class="startpage">
+      <h2> Start Quiz </h2>
+      <button class="start">
+        <span class="begin">Begin</span>
+      </button>
+    </div>`
   }
   
 }
 
-function generateResult() {
-  let message = '';
+  function generateState() {
+    return `
+    <div class='state'>
+    <p>Question: ${store.index + 1} of 5</p>
+    <p>Current Score: ${store.score} of 5</p>
+    </div>`;
+  }
 
-  if (store.score === 5) {
-    message = 'New High Score';
-  } else if (store.score <= 3) {
-    message = 'Better luck next time';
+ 
+  function generateQuestionPage(store, index) {
+    if(index >= 0) {
+      return `
+      <h1>${store.question[index].question}</hi>
+      <form>
+        <div class = "answers">
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.question[index].answer[0]}</label><br>
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.question[index].answer[1]}</label><br>
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.question[index].answer[2]}</label><br>
+          <input type="radio"  name="ans" value="ans">
+          <label for="ans">${store.question[index].answer[3]}</label><br>
+        </div>
+        <div class='submit-button'>
+          <button class="sub button">
+          <span class='submitbuttonlabel'>Submit</span>
+          </button>
+        </div>
+      </form>
+
+      <div class = "score"> score ${store.score}</div>
+      <div class = "questionnum"> question Number   ${store.questionNumber}</div>
+    `;
+    }
+    
+  }
+
+ function generateResult() {
+   let message = '';
+
+    if (store.score == 5) {
+      // todo: how to get message out to user?
+      message = 'New High Score';
+    } else if (store.score <= 3) {
+      message = 'Better luck next time';
+    }
+    else message = 'Try Again';
+ };
+
+  function generateQuizApp(store, index) {
+    console.log("Generating questions and answers");
+  // todo: should be generateQuestionPage
+    const task = generateItemElement(store, index);
+    return task
   }
   else message = 'Try Again';
 }
@@ -121,41 +135,46 @@ function generateQuizApp(store, index) {
 }
 
 
-
-function renderHomePage() {
-  // render the quiz app in the DOM
-  console.log('`quiz app` ran');
-
-  const homepage = quizHomePage();
+    const homepage = quizHomePage();
   // insert that HTML into the DOM
+    
+  $('main').html(homepage)
+
+   
+    
+  }
+
+  function renderQuestionPage() {
+    const questionsString = generateQuestionPage(store);
+    $('main').html(questionsString)
+  }
   
-  $('main').html(homepage);
-  
-  
-}
-
-function renderQuestionsPage() {
-  const questionsString = generateQuestionPage(store, state.questionN);
-  $('main').html(questionsString);
-}
-
-
-function renderState() {
-  $('main').on('click', '.start', () => {
-    renderQuestionsPage();
-    state.quizStarted ='on';
-  });
-
-}
-
-function handleQuiz() {
-  renderHomePage();
-  renderState();
-}
-
-$(handleQuiz);
+  // todo: renderQuestionPage?
+  function renderState() {
+    $('main').on('click', '.start', () => {
+      renderQuestionPage();
+      state.quizStarted ='on';
+    });
  
+  }
+  //todo: need to have an event handler for submit button
+  // submit button should check answer and determine correct answer, update score, i++ question #, then call render qus page
+  // should also determine if the quiz is over 
+  // need end page, reset button, reset button handler will start quiz over
+  function handleQuiz() {
+    renderHomePage();
+    //renderQuestionPage();
+    //renderState();
+    //renderQuizStarted();
+    //handleCorrectAnswer();
+    //handleItemCheckClicked();
+    //handleDeleteItemClicked();
+  
+  }
 
+  $(handleQuiz);
+  //your code here
+//});
 
 
 
