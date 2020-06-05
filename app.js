@@ -1,22 +1,20 @@
-'use strict'; /**
-   * Example store structure
-   */
+'use strict'
+/**
+ * Example store structure
+ */;
 const store = {
   // 5 or more questions are required
   questions: [
     {
       question: 'What is the technical name for the "#" symbol ?',
-      answers: [
-        'Hashtag', 'Pound', 'Octothorpe', 'Number Sign'
-      ],
-      correctAnswer: 'Pound'
+      answers: ['Hashtag', 'Pound', 'Octothorpe', 'Number Sign'],
+      correctAnswer: 'Pound',
     },
     {
-      question: 'IBM created one of the earliest computer programming languages in what year?',
-      answers: [
-        '1991', '1974', '1980', '1957'
-      ],
-      correctAnswer: '1980'
+      question:
+        'IBM created one of the earliest computer programming languages in what year?',
+      answers: ['1991', '1974', '1980', '1957'],
+      correctAnswer: '1980',
     },
     {
       question: 'Whom do many historians consider the first programmer?',
@@ -32,22 +30,28 @@ const store = {
     //question 4
     {
       question: 'Who wrote the classic manual, "The C Programming Language"?',
-      answer: ['Hall and Oats', 'Kernighan and Ritchie', 'Steve Jobs', 'Corky Romano'],
+      answer: [
+        'Hall and Oats',
+        'Kernighan and Ritchie',
+        'Steve Jobs',
+        'Corky Romano',
+      ],
       correctAnswer: 'Kernighan and Ritchie',
     },
     //question 5
     {
-      question: 'Which SQL command would you use to retrieve a record from the database?',
+      question:
+        'Which SQL command would you use to retrieve a record from the database?',
       answer: ['SELECT', 'GET', 'RETREIVE', '#FIND'],
       correctAnswer: 'SELECT',
-    }
+    },
   ],
 };
 
 let state = {
   quizStarted: 'off',
   questionNumber: 0,
-  score: 0
+  score: 0,
 };
 let number = state.questionNumber;
 
@@ -60,8 +64,6 @@ function quizHomePage() {
         </button>
       </div>`;
 }
-    
-
 
 /*function generateState() {
   return `
@@ -71,7 +73,7 @@ function quizHomePage() {
       </div>`;
 }
 */
-  
+
 function generateQuestionPage(store, number) {
   console.log('store' + store);
   console.log('number' + number);
@@ -100,40 +102,23 @@ function generateQuestionPage(store, number) {
             <p>Question: ${state.questionNumber + 1} of 5</p>
             <p>Current Score: ${state.score} of 5</p>
          </div>`;
-
 }
 
 function generateResult() {
   let message = '';
-
   if (store.score === 5) {
-    // todo: how to get message out to user?
     message = 'New High Score';
   } else if (store.score <= 3) {
     message = 'Better luck next time';
-  }
-  else {
+  } else {
     message = 'Try Again';
   }
 }
 
-
-
 function renderHomePage() {
   const homepage = quizHomePage();
   $('main').html(homepage);
-      
 }
-
-
-      
-// insert that HTML into the DOM
-      
-  
-
-    
-      
-
 
 function renderQuestionPage() {
   const questionsString = generateQuestionPage(store, state.questionNumber);
@@ -142,68 +127,56 @@ function renderQuestionPage() {
 
 function correct() {
   console.log($('.form').val());
-  if($('.form').val() === store.questions[number].correctAnswer) {
+  if ($('.form').val() === store.questions[number].correctAnswer) {
     state.score += 1;
   }
 }
-    
+
 function handleSubmit() {
   $('main').on('click', '.subutton', () => {
     state.questionNumber += 1;
     renderQuestionPage();
   });
-
 }
-
-
 
 function handleState() {
   $('main').on('click', '.start', () => {
     renderQuestionPage();
     correct();
-    state.quizStarted ='on';
+    state.quizStarted = 'on';
   });
-  
 }
-//todo: need to have an event handler for submit button
-// submit button should check answer and determine correct answer, update score, i++ question #, then call render qus page
-// should also determine if the quiz is over 
-// need end page, reset button, reset button handler will start quiz over
+
 function handleQuiz() {
   renderHomePage();
   //renderQuestionPage();
   handleState();
   handleSubmit();
-  
+
   //renderQuizStarted();
   //handleCorrectAnswer();
   //handleItemCheckClicked();
   //handleDeleteItemClicked();
-    
 }
 
 $(handleQuiz);
 //your code here
 //});
 
-
-
-
-
 /**
-   * 
-   * Technical requirements:
-   * 
-   * Your app should include a render() function, that regenerates the view each time the store is updated. 
-   * See your course material, consult your instructor, and reference the slides for more details.
-   *
-   * NO additional HTML elements should be added to the index.html file.
-   *
-   * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
-   *
-   * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
-   * 
-   */
+ *
+ * Technical requirements:
+ *
+ * Your app should include a render() function, that regenerates the view each time the store is updated.
+ * See your course material, consult your instructor, and reference the slides for more details.
+ *
+ * NO additional HTML elements should be added to the index.html file.
+ *
+ * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
+ *
+ * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
+ *
+ */
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
