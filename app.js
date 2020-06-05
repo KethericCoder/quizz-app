@@ -32,15 +32,10 @@ const store = {
     //question 4
     {
       question: 'Who wrote the classic manual, "The C Programming Language"?',
-      answer: ['Hall and Oats', 'Kernighan and Ritchie', 'Steve Jobs', 'Corky Romano'],
+      answers: ['Hall and Oats', 'Kernighan and Ritchie', 'Steve Jobs', 'Corky Romano'],
       correctAnswer: 'Kernighan and Ritchie',
     },
     //question 5
-    {
-      question: 'Which SQL command would you use to retrieve a record from the database?',
-      answer: ['SELECT', 'GET', 'RETREIVE', '#FIND'],
-      correctAnswer: 'SELECT',
-    }
   ],
 };
 
@@ -49,7 +44,7 @@ let state = {
   questionNumber: 0,
   score: 0
 };
-let number = state.questionNumber;
+let num = 0;
 
 function quizHomePage() {
   return `
@@ -80,14 +75,12 @@ function generateQuestionPage(store, number) {
         <h1>${store.questions[number].question}</hi>
         <form class="form">
           <div class = "answers">
-            <input type="radio"  name="ans" value="ans">
-            <label for="ans">${store.questions[number].answers[0]}</label><br>
-            <input type="radio"  name="ans" value="ans">
-            <label for="ans">${store.questions[number].answers[1]}</label><br>
-            <input type="radio"  name="ans" value="ans">
-            <label for="ans">${store.questions[number].answers[2]}</label><br>
-            <input type="radio"  name="ans" value="ans">
-            <label for="ans">${store.questions[number].answers[3]}</label><br>
+            <select id="myselect">
+              <option value="1">${store.questions[number].answers[0]}</option>
+              <option value="2">${store.questions[number].answers[1]}</option>
+              <option value="3">${store.questions[number].answers[2]}</option>
+              <option value="4">${store.questions[number].answers[3]}</option>
+            </select>
           </div>
           <div class='submit-button'>
             <button class="subutton">
@@ -106,15 +99,29 @@ function generateQuestionPage(store, number) {
 function generateResult() {
   let message = '';
 
-  if (store.score === 5) {
+  if (state.score === 5) {
     // todo: how to get message out to user?
     message = 'New High Score';
-  } else if (store.score <= 3) {
+  } else if (3 <= state.score < 5) {
     message = 'Better luck next time';
   }
   else {
     message = 'Try Again';
   }
+
+  return `
+  <div class="result">
+    <h2>You Have Answered ${state.score} of 5 questions<br>${message}</h2>
+    <button class="result">
+      <span class="play">Play Again</span>
+    </button>
+  </div>`;
+
+}
+
+function renderResult() {
+  const resultPage = generateResult();
+  $('main').html(resultPage);
 }
 
 
@@ -138,29 +145,74 @@ function renderHomePage() {
 function renderQuestionPage() {
   const questionsString = generateQuestionPage(store, state.questionNumber);
   $('main').html(questionsString);
+  
 }
 
-function correct() {
-  console.log($('.form').val());
-  if($('.form').val() === store.questions[number].correctAnswer) {
+function generateCorrect() {
+  console.log($( '#myselect option:selected' ).text());
+  if($('#myselect option:selected').text() === store.questions[num].correctAnswer) {
+    console.log(state.score);
     state.score += 1;
+    $( '#myselect option:selected' ).text();
+    return `
+      <div class="nextpage">
+        <h2>Bravo You got it <br>${store.questions[num].correctAnswer}</h2>
+        <button class="next">
+          <span class="nex">Next</span>
+        </button>
+      </div>`;
   }
+  else {
+    return `
+      <div class="nextpage">
+        <h2> Incorrect! <br>Correct Answer is ${store.questions[num].correctAnswer} </h2>
+        <button class="next">
+          <span class="nex">Next</span>
+        </button>
+      </div>`;
+  }
+}
+
+function renderCorrect() {
+  const correctans = generateCorrect();
+  $('main').html(correctans);
+}
+
+function handleCorrect() {
+  $('main').on('click', '.next', () => {
+    if(state.questionNumber === 4) {
+      renderResult();
+    }
+    else {
+      state.questionNumber += 1;
+      num += 1;
+      renderQuestionPage();
+    }
+  });
 }
     
 function handleSubmit() {
   $('main').on('click', '.subutton', () => {
-    state.questionNumber += 1;
-    renderQuestionPage();
+    event.preventDefault();
+    renderCorrect();
   });
 
+}
+function handleResult() {
+  $('main').on('click', '.result', () => {
+    renderHomePage();
+    state.quizStarted ='off';
+    state.questionNumber = 0;
+    state.score = 0;
+    num = 0;
+  });
 }
 
 
 
-function handleState() {
+function handleStart() {
   $('main').on('click', '.start', () => {
     renderQuestionPage();
-    correct();
     state.quizStarted ='on';
   });
   
@@ -172,8 +224,11 @@ function handleState() {
 function handleQuiz() {
   renderHomePage();
   //renderQuestionPage();
-  handleState();
+  handleStart();
   handleSubmit();
+  handleResult();
+  handleCorrect();
+  
   
   //renderQuizStarted();
   //handleCorrectAnswer();
