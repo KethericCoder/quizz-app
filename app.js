@@ -1,22 +1,20 @@
-'use strict'; /**
-   * Example store structure
-   */
+'use strict';
+/**
+ * Example store structure
+ */
 const store = {
   // 5 or more questions are required
   questions: [
     {
       question: 'What is the technical name for the "#" symbol ?',
-      answers: [
-        'Hashtag', 'Pound', 'Octothorpe', 'Number Sign'
-      ],
-      correctAnswer: 'Pound'
+      answers: ['Hashtag', 'Pound', 'Octothorpe', 'Number Sign'],
+      correctAnswer: 'Pound',
     },
     {
-      question: 'IBM created one of the earliest computer programming languages in what year?',
-      answers: [
-        '1991', '1974', '1980', '1957'
-      ],
-      correctAnswer: '1980'
+      question:
+        'IBM created one of the earliest computer programming languages in what year?',
+      answers: ['1991', '1974', '1980', '1957'],
+      correctAnswer: '1980',
     },
     {
       question: 'Whom do many historians consider the first programmer?',
@@ -42,21 +40,29 @@ const store = {
 let state = {
   quizStarted: 'off',
   questionNumber: 0,
-  score: 0
+  score: 0,
 };
 let num = 0;
 
 function quizHomePage() {
   return `
       <div class="startpage">
-        <h2> Start Quiz </h2>
+        <h2>Start Quiz</h2>
         <button class="start">
           <span class="begin">Begin</span>
         </button>
       </div>`;
 }
-    
 
+function quizEndPage() {
+  return `
+      <div class="endpage">
+        <h2>Restart Quiz</h2>
+        <button class="reset-button">
+          <span class="reset">Retry</span>
+        </button>
+      </div>`;
+}
 
 /*function generateState() {
   return `
@@ -64,9 +70,8 @@ function quizHomePage() {
       <p>Question: ${state.questionNumber + 1} of 5</p>
       <p>Current Score: ${state.score} of 5</p>
       </div>`;
-}
-*/
-  
+}*/
+
 function generateQuestionPage(store, number) {
   console.log('store' + store);
   console.log('number' + number);
@@ -82,18 +87,16 @@ function generateQuestionPage(store, number) {
               <option value="4">${store.questions[number].answers[3]}</option>
             </select>
           </div>
-          <div class='submit-button'>
+          <div class="submit-button">
             <button class="subutton">
-            <span class='submitbuttonlabel'>Submit</span>
+            <span class="submitbuttonlabel">Submit</span>
             </button>
-          </div>
-          
+          </div>  
         </form>
-        <div class='state'>
-            <p>Question: ${state.questionNumber + 1} of 5</p>
-            <p>Current Score: ${state.score} of 5</p>
-         </div>`;
-
+        <div class="state">
+          <p>Question: ${state.questionNumber + 1} of 5</p>
+          <p>Current Score: ${state.score} of 5</p>
+        </div>`;
 }
 
 function generateResult() {
@@ -124,23 +127,15 @@ function renderResult() {
   $('main').html(resultPage);
 }
 
-
-
 function renderHomePage() {
   const homepage = quizHomePage();
   $('main').html(homepage);
-      
 }
 
-
-      
-// insert that HTML into the DOM
-      
-  
-
-    
-      
-
+function renderEndPage() {
+  const endpage = quizEndPage();
+  $('main').html(endpage);
+}
 
 function renderQuestionPage() {
   const questionsString = generateQuestionPage(store, state.questionNumber);
@@ -190,13 +185,12 @@ function handleCorrect() {
     }
   });
 }
-    
+
 function handleSubmit() {
   $('main').on('click', '.subutton', () => {
     event.preventDefault();
     renderCorrect();
   });
-
 }
 function handleResult() {
   $('main').on('click', '.result', () => {
@@ -215,12 +209,8 @@ function handleStart() {
     renderQuestionPage();
     state.quizStarted ='on';
   });
-  
 }
-//todo: need to have an event handler for submit button
-// submit button should check answer and determine correct answer, update score, i++ question #, then call render qus page
-// should also determine if the quiz is over 
-// need end page, reset button, reset button handler will start quiz over
+
 function handleQuiz() {
   renderHomePage();
   //renderQuestionPage();
@@ -234,40 +224,6 @@ function handleQuiz() {
   //handleCorrectAnswer();
   //handleItemCheckClicked();
   //handleDeleteItemClicked();
-    
 }
 
 $(handleQuiz);
-//your code here
-//});
-
-
-
-
-
-/**
-   * 
-   * Technical requirements:
-   * 
-   * Your app should include a render() function, that regenerates the view each time the store is updated. 
-   * See your course material, consult your instructor, and reference the slides for more details.
-   *
-   * NO additional HTML elements should be added to the index.html file.
-   *
-   * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
-   *
-   * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
-   * 
-   */
-
-/********** TEMPLATE GENERATION FUNCTIONS **********/
-
-// These functions return HTML templates
-
-/********** RENDER FUNCTION(S) **********/
-
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
-
-/********** EVENT HANDLER FUNCTIONS **********/
-
-// These functions handle events (submit, click, etc)
