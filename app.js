@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 /**
  * Example store structure
- */;
+ */
 const store = {
   // 5 or more questions are required
   questions: [
@@ -58,9 +58,19 @@ let number = state.questionNumber;
 function quizHomePage() {
   return `
       <div class="startpage">
-        <h2> Start Quiz </h2>
+        <h2>Start Quiz</h2>
         <button class="start">
           <span class="begin">Begin</span>
+        </button>
+      </div>`;
+}
+
+function quizEndPage() {
+  return `
+      <div class="endpage">
+        <h2>Restart Quiz</h2>
+        <button class="reset-button">
+          <span class="reset">Retry</span>
         </button>
       </div>`;
 }
@@ -71,8 +81,7 @@ function quizHomePage() {
       <p>Question: ${state.questionNumber + 1} of 5</p>
       <p>Current Score: ${state.score} of 5</p>
       </div>`;
-}
-*/
+}*/
 
 function generateQuestionPage(store, number) {
   console.log('store' + store);
@@ -82,36 +91,35 @@ function generateQuestionPage(store, number) {
         <h1>${store.questions[number].question}</hi>
         <form class="form">
           <div class = "answers">
-            <input type="radio"  name="ans" value="ans">
+            <input type="radio" name="ans" value="ans">
             <label for="ans">${store.questions[number].answers[0]}</label><br>
-            <input type="radio"  name="ans" value="ans">
+            <input type="radio" name="ans" value="ans">
             <label for="ans">${store.questions[number].answers[1]}</label><br>
-            <input type="radio"  name="ans" value="ans">
+            <input type="radio" name="ans" value="ans">
             <label for="ans">${store.questions[number].answers[2]}</label><br>
-            <input type="radio"  name="ans" value="ans">
+            <input type="radio" name="ans" value="ans">
             <label for="ans">${store.questions[number].answers[3]}</label><br>
           </div>
-          <div class='submit-button'>
+          <div class="submit-button">
             <button class="subutton">
-            <span class='submitbuttonlabel'>Submit</span>
+            <span class="submitbuttonlabel">Submit</span>
             </button>
-          </div>
-          
+          </div>  
         </form>
-        <div class='state'>
-            <p>Question: ${state.questionNumber + 1} of 5</p>
-            <p>Current Score: ${state.score} of 5</p>
-         </div>`;
+        <div class="state">
+          <p>Question: ${state.questionNumber + 1} of 5</p>
+          <p>Current Score: ${state.score} of 5</p>
+        </div>`;
 }
 
 function generateResult() {
   let message = '';
   if (store.score === 5) {
-    message = 'New High Score';
+   return  message = 'New High Score';
   } else if (store.score <= 3) {
-    message = 'Better luck next time';
+    return message = 'Better luck next time';
   } else {
-    message = 'Try Again';
+    return message = 'Try Again';
   }
 }
 
@@ -120,12 +128,18 @@ function renderHomePage() {
   $('main').html(homepage);
 }
 
+function renderEndPage() {
+  const endpage = quizEndPage();
+  $('main').html(endpage);
+}
+
 function renderQuestionPage() {
   const questionsString = generateQuestionPage(store, state.questionNumber);
   $('main').html(questionsString);
+
 }
 
-function correct() {
+function checkAnswer() {
   console.log($('.form').val());
   if ($('.form').val() === store.questions[number].correctAnswer) {
     state.score += 1;
@@ -139,18 +153,24 @@ function handleSubmit() {
   });
 }
 
-function handleState() {
+function handleSubmit() {
+  $('main').on('click', '.end-button', () => {
+    state.questionNumber += 1;
+    renderHomePage();
+  });
+   
+function handleStart() {
   $('main').on('click', '.start', () => {
     renderQuestionPage();
-    correct();
+    checkAnswer();
     state.quizStarted = 'on';
   });
 }
 
 function handleQuiz() {
   renderHomePage();
-  //renderQuestionPage();
-  handleState();
+  renderEndPage();``
+  handleStart();
   handleSubmit();
 
   //renderQuizStarted();
@@ -160,32 +180,3 @@ function handleQuiz() {
 }
 
 $(handleQuiz);
-//your code here
-//});
-
-/**
- *
- * Technical requirements:
- *
- * Your app should include a render() function, that regenerates the view each time the store is updated.
- * See your course material, consult your instructor, and reference the slides for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
- *
- */
-
-/********** TEMPLATE GENERATION FUNCTIONS **********/
-
-// These functions return HTML templates
-
-/********** RENDER FUNCTION(S) **********/
-
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
-
-/********** EVENT HANDLER FUNCTIONS **********/
-
-// These functions handle events (submit, click, etc)
