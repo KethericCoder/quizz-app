@@ -188,7 +188,13 @@ function handleCorrect() {
 function handleSubmit() {
   $('main').on('click', '.subutton', () => {
     event.preventDefault();
-    renderCorrect();
+    console.log($('input:checked'));
+    if($('input[class="answer"]:checked').val() === undefined) {
+      console.log('choose one');
+    }
+    else {
+      renderCorrect();
+    }
   });
 }
 function handleResult() {
