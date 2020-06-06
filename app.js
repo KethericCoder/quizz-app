@@ -1,4 +1,4 @@
-'use strict';
+
 /**
  * Example store structure
  */
@@ -79,13 +79,11 @@ function generateQuestionPage(store, number) {
   return `
         <h1>${store.questions[number].question}</hi>
         <form class="form">
-          <div class = "answers">
-            <select id="myselect">
-              <option value="1">${store.questions[number].answers[0]}</option>
-              <option value="2">${store.questions[number].answers[1]}</option>
-              <option value="3">${store.questions[number].answers[2]}</option>
-              <option value="4">${store.questions[number].answers[3]}</option>
-            </select>
+          <div class='answers-container'>
+            <input class='answer' type="radio" name='answer' value='0' required>${store.questions[number].answers[0]}<br />
+            <input class='answer' type="radio" name='answer' value='1' required>${store.questions[number].answers[1]}<br />
+            <input class='answer' type="radio" name='answer' value='2' required>${store.questions[number].answers[2]}<br />
+            <input class='answer' type="radio" name='answer' value='3' required>${store.questions[number].answers[3]}<br />
           </div>
           <div class="submit-button">
             <button class="subutton">
@@ -144,8 +142,9 @@ function renderQuestionPage() {
 }
 
 function generateCorrect() {
-  console.log($( '#myselect option:selected' ).text());
-  if($('#myselect option:selected').text() === store.questions[num].correctAnswer) {
+  let userAnswer = $('input[class="answer"]:checked').val();
+  console.log(userAnswer);
+  if(store.questions[state.questionNumber].answers[userAnswer] === store.questions[num].correctAnswer) {
     console.log(state.score);
     state.score += 1;
     $( '#myselect option:selected' ).text();
