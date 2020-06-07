@@ -6,7 +6,7 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
-{
+ * {
   margin: 0;
   padding: 0;
   border: 0;
@@ -42,6 +42,7 @@ header {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 10%;
 }
 
 h1 {
@@ -49,12 +50,35 @@ h1 {
   margin-right: 60px;
   margin: 10px;
   margin-bottom: 10px;
-  pad
+  pad;
   background-color: #f13c20;
   font-size: 40px;
   border: 34px dashed #f13c20 ;
   font-family: 'Share Tech Mono', monospace;
+  text-align: left;
 }
+
+.startpage {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Share Tech Mono', monospace; ;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+ .begin {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: x-large;;
+}
+
+.begin {
+  color: #d79922 ;
+}
+
 
 .answers {
   display: flex;

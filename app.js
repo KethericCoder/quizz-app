@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /**
  * Example store structure
  */
@@ -7,38 +7,43 @@ const store = {
   questions: [
     {
       question: 'What is the technical name for the "#" symbol ?',
-      answers: ['Hashtag', 'Pound', 'Octothorpe', 'Number Sign'],
-      correctAnswer: 'Pound',
+      answers: ["Hashtag", "Pound", "Octothorpe", "Number Sign"],
+      correctAnswer: "Pound",
     },
     {
       question:
-        'IBM created one of the earliest computer programming languages in what year?',
-      answers: ['1991', '1974', '1980', '1957'],
-      correctAnswer: '1980',
+        "IBM created one of the earliest computer programming languages in what year?",
+      answers: ["1991", "1974", "1980", "1957"],
+      correctAnswer: "1980",
     },
     {
-      question: 'Whom do many historians consider the first programmer?',
-      answers: ['Ada Lovelace', 'Charles Babbage', 'Bill Gates', 'Lord Byron'],
-      correctAnswer: 'Ada Lovelace',
+      question: "Whom do many historians consider the first programmer?",
+      answers: ["Ada Lovelace", "Charles Babbage", "Bill Gates", "Lord Byron"],
+      correctAnswer: "Ada Lovelace",
     },
     //question 3
     {
-      question: 'Which of the following operators has the highest precedence?',
-      answers: ['*', '&&', '!=', '!'],
-      correctAnswer: '!=',
+      question: "Which of the following operators has the highest precedence?",
+      answers: ["*", "&&", "!=", "!"],
+      correctAnswer: "!=",
     },
     //question 4
     {
       question: 'Who wrote the classic manual, "The C Programming Language"?',
-      answers: ['Hall and Oats', 'Kernighan and Ritchie', 'Steve Jobs', 'Corky Romano'],
-      correctAnswer: 'Kernighan and Ritchie',
+      answers: [
+        "Hall and Oats",
+        "Kernighan and Ritchie",
+        "Steve Jobs",
+        "Corky Romano",
+      ],
+      correctAnswer: "Kernighan and Ritchie",
     },
     //question 5
   ],
 };
 
 let state = {
-  quizStarted: 'off',
+  quizStarted: "off",
   questionNumber: 0,
   score: 0,
 };
@@ -73,9 +78,9 @@ function quizEndPage() {
 }*/
 
 function generateQuestionPage(store, number) {
-  console.log('store' + store);
-  console.log('number' + number);
-  console.log('store' + store.questions);
+  console.log("store" + store);
+  console.log("number" + number);
+  console.log("store" + store.questions);
   return `
         <h1>${store.questions[number].question}</hi>
         <form class="form">
@@ -100,16 +105,15 @@ function generateQuestionPage(store, number) {
 }
 
 function generateResult() {
-  let message = '';
+  let message = "";
 
   if (state.score === 5) {
     // todo: how to get message out to user?
-    message = 'New High Score';
+    message = "New High Score";
   } else if (3 <= state.score < 5) {
-    message = 'Better luck next time';
-  }
-  else {
-    message = 'Try Again';
+    message = "Better luck next time";
+  } else {
+    message = "Try Again";
   }
 
   return `
@@ -119,36 +123,45 @@ function generateResult() {
       <span class="play">Play Again</span>
     </button>
   </div>`;
+}
 
+function footer() {
+  return `
+  <div class="footer">
+    <footer>
+      <span class="copyright">Abdu & Katie 2020 &copy;</span>
+    </footer>
+  </div>`;
 }
 
 function renderResult() {
   const resultPage = generateResult();
-  $('main').html(resultPage);
+  $("main").html(resultPage);
 }
 
 function renderHomePage() {
   const homepage = quizHomePage();
-  $('main').html(homepage);
+  $("main").html(homepage);
 }
 
 function renderEndPage() {
   const endpage = quizEndPage();
-  $('main').html(endpage);
+  $("main").html(endpage);
 }
 
 function renderQuestionPage() {
   const questionsString = generateQuestionPage(store, state.questionNumber);
-  $('main').html(questionsString);
-  
+  $("main").html(questionsString);
 }
 
 function generateCorrect() {
-  console.log($( '#myselect option:selected' ).text());
-  if($('#myselect option:selected').text() === store.questions[num].correctAnswer) {
+  console.log($("#myselect option:selected").text());
+  if (
+    $("#myselect option:selected").text() === store.questions[num].correctAnswer
+  ) {
     console.log(state.score);
     state.score += 1;
-    $( '#myselect option:selected' ).text();
+    $("#myselect option:selected").text();
     return `
       <div class="nextpage">
         <h2>Bravo You got it <br>${store.questions[num].correctAnswer}</h2>
@@ -156,8 +169,7 @@ function generateCorrect() {
           <span class="nex">Next</span>
         </button>
       </div>`;
-  }
-  else {
+  } else {
     return `
       <div class="nextpage">
         <h2> Incorrect! <br>Correct Answer is ${store.questions[num].correctAnswer} </h2>
@@ -170,15 +182,14 @@ function generateCorrect() {
 
 function renderCorrect() {
   const correctans = generateCorrect();
-  $('main').html(correctans);
+  $("main").html(correctans);
 }
 
 function handleCorrect() {
-  $('main').on('click', '.next', () => {
-    if(state.questionNumber === 4) {
+  $("main").on("click", ".next", () => {
+    if (state.questionNumber === 4) {
       renderResult();
-    }
-    else {
+    } else {
       state.questionNumber += 1;
       num += 1;
       renderQuestionPage();
@@ -187,27 +198,25 @@ function handleCorrect() {
 }
 
 function handleSubmit() {
-  $('main').on('click', '.subutton', () => {
+  $("main").on("click", ".subutton", () => {
     event.preventDefault();
     renderCorrect();
   });
 }
 function handleResult() {
-  $('main').on('click', '.result', () => {
+  $("main").on("click", ".result", () => {
     renderHomePage();
-    state.quizStarted ='off';
+    state.quizStarted = "off";
     state.questionNumber = 0;
     state.score = 0;
     num = 0;
   });
 }
 
-
-
 function handleStart() {
-  $('main').on('click', '.start', () => {
+  $("main").on("click", ".start", () => {
     renderQuestionPage();
-    state.quizStarted ='on';
+    state.quizStarted = "on";
   });
 }
 
@@ -218,8 +227,8 @@ function handleQuiz() {
   handleSubmit();
   handleResult();
   handleCorrect();
-  
-  
+  renderFooter();
+
   //renderQuizStarted();
   //handleCorrectAnswer();
   //handleItemCheckClicked();
