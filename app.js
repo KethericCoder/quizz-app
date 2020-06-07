@@ -53,13 +53,15 @@ function quizHomePage() {
   return `
       <div class="startpage">
         <h2>Start Quiz</h2>
+      </div>
+      <div class="startpage">
         <button class="start">
           <span class="begin">Begin</span>
         </button>
       </div>`;
 }
 
-function quizEndPage() {
+/*function quizEndPage() {
   return `
       <div class="endpage">
         <h2>Restart Quiz</h2>
@@ -67,7 +69,7 @@ function quizEndPage() {
           <span class="reset">Retry</span>
         </button>
       </div>`;
-}
+} */
 
 /*function generateState() {
   return `
@@ -84,13 +86,11 @@ function generateQuestionPage(store, number) {
   return `
         <h1>${store.questions[number].question}</hi>
         <form class="form">
-          <div class = "answers">
-            <select id="myselect">
-              <option value="1">${store.questions[number].answers[0]}</option>
-              <option value="2">${store.questions[number].answers[1]}</option>
-              <option value="3">${store.questions[number].answers[2]}</option>
-              <option value="4">${store.questions[number].answers[3]}</option>
-            </select>
+          <div class='answers-container'>
+            <input class='answer' type="radio" name='answer' value='0' required>${store.questions[number].answers[0]}<br />
+            <input class='answer' type="radio" name='answer' value='1' required>${store.questions[number].answers[1]}<br />
+            <input class='answer' type="radio" name='answer' value='2' required>${store.questions[number].answers[2]}<br />
+            <input class='answer' type="radio" name='answer' value='3' required>${store.questions[number].answers[3]}<br />
           </div>
           <div class="submit-button">
             <button class="subutton">
@@ -119,7 +119,9 @@ function generateResult() {
   return `
   <div class="result">
     <h2>You Have Answered ${state.score} of 5 questions<br>${message}</h2>
-    <button class="result">
+  </div>
+  <div class="result">
+    <button class="playagain">
       <span class="play">Play Again</span>
     </button>
   </div>`;
@@ -155,16 +157,17 @@ function renderQuestionPage() {
 }
 
 function generateCorrect() {
-  console.log($("#myselect option:selected").text());
-  if (
-    $("#myselect option:selected").text() === store.questions[num].correctAnswer
-  ) {
+  let userAnswer = $('input[class="answer"]:checked').val();
+  console.log(userAnswer);
+  if(store.questions[state.questionNumber].answers[userAnswer] === store.questions[num].correctAnswer) {
     console.log(state.score);
     state.score += 1;
     $("#myselect option:selected").text();
     return `
       <div class="nextpage">
         <h2>Bravo You got it <br>${store.questions[num].correctAnswer}</h2>
+      </div>
+      <div class="nextpage">
         <button class="next">
           <span class="nex">Next</span>
         </button>
@@ -173,6 +176,8 @@ function generateCorrect() {
     return `
       <div class="nextpage">
         <h2> Incorrect! <br>Correct Answer is ${store.questions[num].correctAnswer} </h2>
+      </div>
+      <div class="nextpage">
         <button class="next">
           <span class="nex">Next</span>
         </button>
@@ -200,7 +205,13 @@ function handleCorrect() {
 function handleSubmit() {
   $("main").on("click", ".subutton", () => {
     event.preventDefault();
-    renderCorrect();
+    console.log($('input:checked'));
+    if($('input[class="answer"]:checked').val() === undefined) {
+      console.log('choose one');
+    }
+    else {
+      renderCorrect();
+    }
   });
 }
 function handleResult() {
