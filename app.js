@@ -48,13 +48,15 @@ function quizHomePage() {
   return `
       <div class="startpage">
         <h2>Start Quiz</h2>
+      </div>
+      <div class="startpage">
         <button class="start">
           <span class="begin">Begin</span>
         </button>
       </div>`;
 }
 
-function quizEndPage() {
+/*function quizEndPage() {
   return `
       <div class="endpage">
         <h2>Restart Quiz</h2>
@@ -62,7 +64,7 @@ function quizEndPage() {
           <span class="reset">Retry</span>
         </button>
       </div>`;
-}
+} */
 
 /*function generateState() {
   return `
@@ -113,7 +115,9 @@ function generateResult() {
   return `
   <div class="result">
     <h2>You Have Answered ${state.score} of 5 questions<br>${message}</h2>
-    <button class="result">
+  </div>
+  <div class="result">
+    <button class="playagain">
       <span class="play">Play Again</span>
     </button>
   </div>`;
@@ -151,6 +155,8 @@ function generateCorrect() {
     return `
       <div class="nextpage">
         <h2>Bravo You got it <br>${store.questions[num].correctAnswer}</h2>
+      </div>
+      <div class="nextpage">
         <button class="next">
           <span class="nex">Next</span>
         </button>
@@ -160,6 +166,8 @@ function generateCorrect() {
     return `
       <div class="nextpage">
         <h2> Incorrect! <br>Correct Answer is ${store.questions[num].correctAnswer} </h2>
+      </div>
+      <div class="nextpage">
         <button class="next">
           <span class="nex">Next</span>
         </button>
