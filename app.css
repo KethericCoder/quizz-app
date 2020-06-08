@@ -5,16 +5,16 @@
   *
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
-
-* {
+*/
+/*{
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   /*The box-sizing property is used to tell the browser what the sizing properties (width and height) should include border-box.*/
-  box-sizing: border-box;
-  /*reset Chrome user agent styles*/
-  /*-webkit-margin-before: 0px;
+box-sizing: border-box;
+/*reset Chrome user agent styles*/
+/*-webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
@@ -24,7 +24,6 @@
   -webkit-padding-end: 0px;
 }
 
-
 /*additional css begins*/
 
 .hidden {
@@ -32,7 +31,7 @@
 }
 
 body {
-  background-color:#efe2ba;
+  background-color: #efe2ba;
   padding: auto;
   margin: auto;
 }
@@ -42,84 +41,109 @@ header {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 10%;
+  padding-bottom: 20px;
+}
+
+main {
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin: 10px;
+  margin-bottom: 10px;
+  background-color: #f13c20;
+  font-size: 30px;
+  border: 34px dashed rgb(74, 47, 194);
+  font-family: "Share Tech Mono", monospace;
+  color: #d79922;
 }
 
 h1 {
   margin: 20px;
   background-color: #f13c20;
   font-size: 40px;
-  border: 34px dashed #f13c20 ;
-  font-family: 'Share Tech Mono', monospace;
-  pad:100%
-}
-
-.answer {
+  border: 34px dashed rgb(74, 47, 194);
+  font-family: "Share Tech Mono", monospace;
+  pad: 100%;
   text-align: center;
-  
-}
-
-
-.answers-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: center;
-  pad:100%
-
 }
 
 .startpage {
   text-align: center;
   margin-left: 60px;
   margin-right: 60px;
-  margin: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   background-color: #f13c20;
   font-size: 40px;
-  border: 34px dashed #f13c20 ;
-  font-family: 'Share Tech Mono', monospace;
-  text-align: left;
+  border: 34px dashed rgb(74, 47, 194);
+  font-family: "Share Tech Mono", monospace;
+  pad: 100%;
 }
 
-.startpage {
-  display: flex;
-  flex-direction: column;
+form {
+  margin-bottom: 10px;
+  background-color: #f13c20;
+  border: 34px dashed rgb(74, 47, 194);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+p {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 50px;
+  font-weight: bolder;
   text-align: center;
 }
 
-h2 {
-  font-family: 'Share Tech Mono', monospace; ;
-  font-size: x-large;
-  font-weight: bolder;
-}
-
- .begin {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: x-large;;
-}
-
 .begin {
-  color: #d79922 ;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 30px;
+  color: #d79922;
 }
 
+.submitbuttonlabel {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 30px;
+  color: #d79922;
+}
 
-.answers {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  
+.nex {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 30px;
+  color: #d79922;
+}
+
+.playagain {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 30px;
+  color: #d79922;
+}
+
+.result {
+  text-align: center;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-bottom: 10px;
+  background-color: #f13c20;
+  font-size: 40px;
+  border: 34px dashed rgb(74, 47, 194);
+  font-family: "Share Tech Mono", monospace;
+  pad: 100%;
 }
 
 .nextpage {
   text-align: center;
   margin-left: 60px;
   margin-right: 60px;
-  margin: 10px;
   margin-bottom: 10px;
   background-color: #f13c20;
   font-size: 40px;
-  border: 34px dashed #f13c20 ;
-  font-family: 'Share Tech Mono', monospace;
-  pad:100%
+  border: 34px dashed rgb(74, 47, 194);
+  font-family: "Share Tech Mono", monospace;
+  pad: 100%;
 }

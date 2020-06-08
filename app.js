@@ -58,7 +58,8 @@ function quizHomePage() {
         <button class="start">
           <span class="begin">Begin</span>
         </button>
-      </div>`;
+      </div>
+`;
 }
 
 /*function quizEndPage() {
@@ -84,13 +85,21 @@ function generateQuestionPage(store, number) {
   console.log("number" + number);
   console.log("store" + store.questions);
   return `
-        <h1>${store.questions[number].question}</hi>
+        <p>${store.questions[number].question}</p>
         <form class="form">
           <div class='answers-container'>
-            <input class='answer' type="radio" name='answer' value='0' required>${store.questions[number].answers[0]}<br />
-            <input class='answer' type="radio" name='answer' value='1' required>${store.questions[number].answers[1]}<br />
-            <input class='answer' type="radio" name='answer' value='2' required>${store.questions[number].answers[2]}<br />
-            <input class='answer' type="radio" name='answer' value='3' required>${store.questions[number].answers[3]}<br />
+            <input class='answer' type="radio" name='answer' value='0' required>${
+              store.questions[number].answers[0]
+            }
+            <input class='answer' type="radio" name='answer' value='1' required>${
+              store.questions[number].answers[1]
+            }
+            <input class='answer' type="radio" name='answer' value='2' required>${
+              store.questions[number].answers[2]
+            }
+            <input class='answer' type="radio" name='answer' value='3' required>${
+              store.questions[number].answers[3]
+            }
           </div>
           <div class="submit-button">
             <button class="subutton">
@@ -159,7 +168,10 @@ function renderQuestionPage() {
 function generateCorrect() {
   let userAnswer = $('input[class="answer"]:checked').val();
   console.log(userAnswer);
-  if(store.questions[state.questionNumber].answers[userAnswer] === store.questions[num].correctAnswer) {
+  if (
+    store.questions[state.questionNumber].answers[userAnswer] ===
+    store.questions[num].correctAnswer
+  ) {
     console.log(state.score);
     state.score += 1;
     $("#myselect option:selected").text();
@@ -185,6 +197,11 @@ function generateCorrect() {
   }
 }
 
+function renderFooter() {
+  const copyright = footer();
+  $("footer").html(copyright);
+}
+
 function renderCorrect() {
   const correctans = generateCorrect();
   $("main").html(correctans);
@@ -205,11 +222,10 @@ function handleCorrect() {
 function handleSubmit() {
   $("main").on("click", ".subutton", () => {
     event.preventDefault();
-    console.log($('input:checked'));
-    if($('input[class="answer"]:checked').val() === undefined) {
-      console.log('choose one');
-    }
-    else {
+    console.log($("input:checked"));
+    if ($('input[class="answer"]:checked').val() === undefined) {
+      console.log("choose one");
+    } else {
       renderCorrect();
     }
   });
