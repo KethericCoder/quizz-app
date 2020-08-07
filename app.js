@@ -1,9 +1,6 @@
 "use strict";
-/**
- * Example store structure
- */
+
 const store = {
-  // 5 or more questions are required
   questions: [
     {
       question: 'What is the technical name for the "#" symbol ?',
@@ -62,50 +59,44 @@ function quizHomePage() {
 `;
 }
 
-/*function quizEndPage() {
-  return `
-      <div class="endpage">
-        <h2>Restart Quiz</h2>
-        <button class="reset-button">
-          <span class="reset">Retry</span>
-        </button>
-      </div>`;
-} */
-
-/*function generateState() {
-  return `
-      <div class='state'>
-      <p>Question: ${state.questionNumber + 1} of 5</p>
-      <p>Current Score: ${state.score} of 5</p>
-      </div>`;
-}*/
-
 function generateQuestionPage(store, number) {
   console.log("store" + store);
   console.log("number" + number);
   console.log("store" + store.questions);
   return `
+      <form>
+        <fieldset>
+          <legend>
         <p>${store.questions[number].question}</p>
-        <form class="form">
+          </legend>
           <div class='answers-container'>
+          <label>
             <input class='answer' type="radio" name='answer' value='0' required>${
               store.questions[number].answers[0]
             }
+            </label>
+          <label>
             <input class='answer' type="radio" name='answer' value='1' required>${
               store.questions[number].answers[1]
             }
+            </label>
+          <label>
             <input class='answer' type="radio" name='answer' value='2' required>${
               store.questions[number].answers[2]
             }
+            </label>
+          <label>
             <input class='answer' type="radio" name='answer' value='3' required>${
               store.questions[number].answers[3]
             }
+            </label>
           </div>
           <div class="submit-button">
             <button class="subutton">
             <span class="submitbuttonlabel">Submit</span>
             </button>
-          </div>  
+          </div> 
+          </fieldset> 
         </form>
         <div class="state">
           <p>Question: ${state.questionNumber + 1} of 5</p>
@@ -117,7 +108,6 @@ function generateResult() {
   let message = "";
 
   if (state.score === 5) {
-    // todo: how to get message out to user?
     message = "New High Score";
   } else if (3 <= state.score < 5) {
     message = "Better luck next time";
@@ -140,7 +130,7 @@ function footer() {
   return `
   <div class="footer">
     <footer>
-      <span class="copyright">Abdu & Katie 2020 &copy;</span>
+      <span class="copyright">Katie 2020 &copy;</span>
     </footer>
   </div>`;
 }
@@ -220,8 +210,7 @@ function handleCorrect() {
 }
 
 function handleSubmit() {
-  $("main").on("click", ".subutton", () => {
-    event.preventDefault();
+  $("main").on("submit", ".subutton", () => {
     console.log($("input:checked"));
     if ($('input[class="answer"]:checked').val() === undefined) {
       console.log("choose one");
@@ -249,17 +238,11 @@ function handleStart() {
 
 function handleQuiz() {
   renderHomePage();
-  //renderQuestionPage();
   handleStart();
   handleSubmit();
   handleResult();
   handleCorrect();
   renderFooter();
-
-  //renderQuizStarted();
-  //handleCorrectAnswer();
-  //handleItemCheckClicked();
-  //handleDeleteItemClicked();
 }
 
 $(handleQuiz);
