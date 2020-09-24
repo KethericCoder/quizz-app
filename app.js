@@ -210,7 +210,8 @@ function handleCorrect() {
 }
 
 function handleSubmit() {
-  $("main").on("submit", ".subutton", () => {
+   $("main").on("click", ".subutton", () => {
+    event.preventDefault();
     console.log($("input:checked"));
     if ($('input[class="answer"]:checked').val() === undefined) {
       console.log("choose one");
